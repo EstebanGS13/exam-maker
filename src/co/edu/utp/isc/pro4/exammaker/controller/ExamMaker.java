@@ -13,4 +13,12 @@ public class ExamMaker {
         // TODO code application logic here
     }
     
+    public void saveExam() {
+        //TODO
+    }
+    
+    public void loadExam() {
+        //TODO
+    }
+    
 }
