@@ -2,12 +2,12 @@
 package co.edu.utp.isc.pro4.exammaker.model;
 
 
-public class OpenAnswer extends Answer {
+public class OpenAnswer extends Question {
     
     private String answer;
 
-    public OpenAnswer(double value) {
-        super(value);
+    public OpenAnswer(QuestionType type) {
+        super(type);
         this.answer = "";
     }
 

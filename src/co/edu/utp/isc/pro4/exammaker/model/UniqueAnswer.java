@@ -5,22 +5,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class UniqueAnswer extends Answer {
+public class UniqueAnswer extends Question {
     
-    private List<String> choices = new ArrayList();
-    private String correctAnswer;
+    private List<String> choices;
+    private int correctIndex;
+    //TODO chosen answer? 
 
-    public UniqueAnswer(String correctAnswer, double value) {
-        super(value);
-        this.correctAnswer = "";
+    public UniqueAnswer(List<String> choices, QuestionType type) {
+        //TODO recibir lista puede estar erroneo
+        super(type);
+        this.choices = new ArrayList();
     }
 
     public List<String> getChoices() {
         return choices;
     }
 
-    public String getCorrectAnswer() {
-        return correctAnswer;
+    public int getCorrectIndex() {
+        return correctIndex;
+    }
+
+    public void setCorrectIndex(int correctIndex) {
+        this.correctIndex = correctIndex;
     }
     
 }
