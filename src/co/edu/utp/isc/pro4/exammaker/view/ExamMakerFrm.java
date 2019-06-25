@@ -162,7 +162,7 @@ public class ExamMakerFrm extends javax.swing.JFrame implements FrameControl {
     }//GEN-LAST:event_jButtonProfessorActionPerformed
 
     private void btnCreateExamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateExamActionPerformed
-        switchCard("create ");
+        switchCard("create");
     }//GEN-LAST:event_btnCreateExamActionPerformed
 
     /**
