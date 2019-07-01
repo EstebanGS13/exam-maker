@@ -2,6 +2,8 @@ package co.edu.utp.isc.pro4.exammaker.view;
 
 import co.edu.utp.isc.pro4.exammaker.controller.ExamController;
 import co.edu.utp.isc.pro4.exammaker.model.QuestionType;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -28,8 +30,7 @@ public class AddQuestionPnl extends javax.swing.JPanel implements FrameControl {
         btnGroupUnique = new javax.swing.ButtonGroup();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnEnviar = new javax.swing.JButton();
         btnNuevaPregunta = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jPnlEmpty2 = new javax.swing.JPanel();
@@ -89,9 +90,12 @@ public class AddQuestionPnl extends javax.swing.JPanel implements FrameControl {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        jButton1.setText("jButton1");
-
-        jButton2.setText("jButton2");
+        btnEnviar.setText("Enviar a Archivo");
+        btnEnviar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEnviarActionPerformed(evt);
+            }
+        });
 
         btnNuevaPregunta.setText("Nueva Pregunta");
         btnNuevaPregunta.addActionListener(new java.awt.event.ActionListener() {
@@ -350,10 +354,9 @@ public class AddQuestionPnl extends javax.swing.JPanel implements FrameControl {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2))
+                        .addComponent(btnEnviar))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(199, 199, 199)
@@ -381,10 +384,8 @@ public class AddQuestionPnl extends javax.swing.JPanel implements FrameControl {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1)
-                            .addComponent(jButton2))
-                        .addContainerGap(7, Short.MAX_VALUE))
+                        .addComponent(btnEnviar)
+                        .addContainerGap(12, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -435,23 +436,65 @@ public class AddQuestionPnl extends javax.swing.JPanel implements FrameControl {
     private void btnGuardarPreguntaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarPreguntaActionPerformed
         String statement = txaStatement.getText().trim();
         double value = Double.parseDouble(jTextField1.getText().trim());
+        List<String> options = new ArrayList(); 
+        
         switch(cmbQuestionType.getSelectedIndex()) {
             case 0:
-                ExamController.getInstance().addQuestionOpenAnswer(QuestionType.OPEN, statement, value);
+                ExamController.getInstance()
+                        .addQuestionOpenAnswer(QuestionType.OPEN, statement, value);
                 break;
             case 1:
-                ExamController.getInstance().addQuestionUniqueAnswer(QuestionType.UNIQUE, statement, value);
-                //TODO get answers
+                int correctOption = -1;
+                if (radOptionA.isSelected()) {
+                    correctOption = 0;
+                } else if (radOptionB.isSelected()) {
+                    correctOption = 1;
+                } else if (radOptionC.isSelected()) {
+                    correctOption = 2;
+                } else if (radOptionD.isSelected()) {
+                    correctOption = 3;
+                }
+                options.add(txtOptionA.getText().trim());
+                options.add(txtOptionB.getText().trim());
+                options.add(txtOptionC.getText().trim());
+                options.add(txtOptionD.getText().trim());
+                ExamController.getInstance()
+                        .addQuestionUniqueAnswer(QuestionType.UNIQUE, 
+                                statement, value, options, correctOption);
                 break;
             case 2:
-                ExamController.getInstance().addQuestionMultipleAnswer(QuestionType.MULTIPLE, statement, value);
-                //TODO get answers
+                List<Integer> correctOptions = new ArrayList();
+                if (chkOptionA.isSelected()) {
+                    correctOptions.add(0);
+                }
+                if (chkOptionB.isSelected()) {
+                    correctOptions.add(1);
+                }
+                if (chkOptionC.isSelected()) {
+                    correctOptions.add(2);
+                }
+                if (chkOptionD.isSelected()) {
+                    correctOptions.add(3);
+                }
+                options.add(txtOptionA1.getText().trim());
+                options.add(txtOptionB1.getText().trim());
+                options.add(txtOptionC1.getText().trim());
+                options.add(txtOptionD1.getText().trim());
+                ExamController.getInstance()
+                        .addQuestionMultipleAnswer(QuestionType.MULTIPLE, 
+                                statement, value, options, correctOptions);
                 break;
         }    
     }//GEN-LAST:event_btnGuardarPreguntaActionPerformed
 
+    private void btnEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarActionPerformed
+        // TODO add your handling code here:
+        ExamController.getInstance().test();
+    }//GEN-LAST:event_btnEnviarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnEnviar;
     private javax.swing.ButtonGroup btnGroupUnique;
     private javax.swing.JButton btnGuardarPregunta;
     private javax.swing.JButton btnNuevaPregunta;
@@ -460,8 +503,6 @@ public class AddQuestionPnl extends javax.swing.JPanel implements FrameControl {
     private javax.swing.JCheckBox chkOptionC;
     private javax.swing.JCheckBox chkOptionD;
     private javax.swing.JComboBox<String> cmbQuestionType;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

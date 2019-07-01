@@ -24,5 +24,13 @@ public class QuestionMultipleAnswer extends Question implements Serializable {
     public List<Integer> getCorrectOptionsIndexes() {
         return correctOptionsIndexes;
     }
+
+    public void setOptions(List<String> options) {
+        this.options = options;
+    }
+
+    public void setCorrectOptionsIndexes(List<Integer> correctOptionsIndexes) {
+        this.correctOptionsIndexes = correctOptionsIndexes;
+    }
  
 }

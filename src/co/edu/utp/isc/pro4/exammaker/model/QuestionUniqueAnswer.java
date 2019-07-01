@@ -28,4 +28,9 @@ public class QuestionUniqueAnswer extends Question implements Serializable {
         this.correctOptionIndex = correctOptionIndex;
     }
 
+    public void setOptions(List<String> options) {
+        this.options = options;
+    }
+    
+
 }
