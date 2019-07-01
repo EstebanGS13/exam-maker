@@ -51,10 +51,16 @@ public class ExamController {
         this.exam.getQuestions().add(question);
     }
 
+    public void saveExam() {
+        FileController.getInstance().saveNewExam(this.exam);
+    }
+    
     public void test() {
         for (Question q : this.exam.getQuestions()) {
             System.out.println(q);
         }
     }
+
+    
     
 }

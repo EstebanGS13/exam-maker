@@ -488,8 +488,7 @@ public class AddQuestionPnl extends javax.swing.JPanel implements FrameControl {
     }//GEN-LAST:event_btnGuardarPreguntaActionPerformed
 
     private void btnEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarActionPerformed
-        // TODO add your handling code here:
-        ExamController.getInstance().test();
+        ExamController.getInstance().saveExam();
     }//GEN-LAST:event_btnEnviarActionPerformed
 
 
