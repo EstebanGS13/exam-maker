@@ -1,5 +1,7 @@
 package co.edu.utp.isc.pro4.exammaker.view;
 
+import co.edu.utp.isc.pro4.exammaker.controller.ExamController;
+
 /**
  *
  * @author Esteban
@@ -25,15 +27,15 @@ public class CreateExamPnl extends javax.swing.JPanel implements FrameControl {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtExamName = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        txaExamDescription = new javax.swing.JTextArea();
         btnCrear = new javax.swing.JButton();
         jPnlQuestions = new javax.swing.JPanel();
         jPnlEmpty = new javax.swing.JPanel();
         addQuestionPnl1 = new co.edu.utp.isc.pro4.exammaker.view.AddQuestionPnl();
         jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        txtMaxGrade = new javax.swing.JTextField();
 
         setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Crear Examen", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 14))); // NOI18N
 
@@ -41,15 +43,17 @@ public class CreateExamPnl extends javax.swing.JPanel implements FrameControl {
 
         jLabel2.setText("Descripción:");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txtExamName.setText("TEST PARCIAL");
+        txtExamName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txtExamNameActionPerformed(evt);
             }
         });
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        txaExamDescription.setColumns(20);
+        txaExamDescription.setRows(5);
+        txaExamDescription.setText("ESTO ES UN TEST");
+        jScrollPane1.setViewportView(txaExamDescription);
 
         btnCrear.setText("Crear");
         btnCrear.addActionListener(new java.awt.event.ActionListener() {
@@ -64,11 +68,11 @@ public class CreateExamPnl extends javax.swing.JPanel implements FrameControl {
         jPnlEmpty.setLayout(jPnlEmptyLayout);
         jPnlEmptyLayout.setHorizontalGroup(
             jPnlEmptyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 706, Short.MAX_VALUE)
+            .addGap(0, 684, Short.MAX_VALUE)
         );
         jPnlEmptyLayout.setVerticalGroup(
             jPnlEmptyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 514, Short.MAX_VALUE)
+            .addGap(0, 527, Short.MAX_VALUE)
         );
 
         jPnlQuestions.add(jPnlEmpty, "empty");
@@ -76,11 +80,7 @@ public class CreateExamPnl extends javax.swing.JPanel implements FrameControl {
 
         jLabel3.setText("Nota máxima:");
 
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
-            }
-        });
+        txtMaxGrade.setText("5");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -98,10 +98,10 @@ public class CreateExamPnl extends javax.swing.JPanel implements FrameControl {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtMaxGrade, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnCrear))
-                            .addComponent(jTextField1)
+                            .addComponent(txtExamName)
                             .addComponent(jScrollPane1))))
                 .addContainerGap())
         );
@@ -111,7 +111,7 @@ public class CreateExamPnl extends javax.swing.JPanel implements FrameControl {
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtExamName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
@@ -119,29 +119,30 @@ public class CreateExamPnl extends javax.swing.JPanel implements FrameControl {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnCrear)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel3)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel3)
+                    .addComponent(txtMaxGrade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20)
                 .addComponent(jPnlQuestions, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void txtExamNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtExamNameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_txtExamNameActionPerformed
 
     private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
+        String name = txtExamName.getText().trim();
+        String description = txaExamDescription.getText().trim();
+        double maxGrade = Double.parseDouble(txtMaxGrade.getText().trim());
+        
+        ExamController.getInstance().createExam(name, description, maxGrade);
+        
         switchCard("questions");
     }//GEN-LAST:event_btnCrearActionPerformed
-
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -153,9 +154,9 @@ public class CreateExamPnl extends javax.swing.JPanel implements FrameControl {
     private javax.swing.JPanel jPnlEmpty;
     private javax.swing.JPanel jPnlQuestions;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextArea txaExamDescription;
+    private javax.swing.JTextField txtExamName;
+    private javax.swing.JTextField txtMaxGrade;
     // End of variables declaration//GEN-END:variables
     
     
