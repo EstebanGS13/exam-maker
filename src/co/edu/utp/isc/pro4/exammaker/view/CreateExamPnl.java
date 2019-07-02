@@ -43,7 +43,6 @@ public class CreateExamPnl extends javax.swing.JPanel implements FrameControl {
 
         jLabel2.setText("Descripción:");
 
-        txtExamName.setText("TEST PARCIAL");
         txtExamName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtExamNameActionPerformed(evt);
@@ -52,7 +51,6 @@ public class CreateExamPnl extends javax.swing.JPanel implements FrameControl {
 
         txaExamDescription.setColumns(20);
         txaExamDescription.setRows(5);
-        txaExamDescription.setText("ESTO ES UN TEST");
         jScrollPane1.setViewportView(txaExamDescription);
 
         btnCrear.setText("Crear");
@@ -80,8 +78,6 @@ public class CreateExamPnl extends javax.swing.JPanel implements FrameControl {
 
         jLabel3.setText("Nota máxima:");
 
-        txtMaxGrade.setText("5");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -100,7 +96,7 @@ public class CreateExamPnl extends javax.swing.JPanel implements FrameControl {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(txtMaxGrade, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnCrear))
+                                .addComponent(btnCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(txtExamName)
                             .addComponent(jScrollPane1))))
                 .addContainerGap())

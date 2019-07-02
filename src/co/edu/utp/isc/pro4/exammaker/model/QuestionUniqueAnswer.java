@@ -10,6 +10,7 @@ public class QuestionUniqueAnswer extends Question implements Serializable {
     
     private List<String> options;
     private int correctOptionIndex;
+    private int chosenOptionIndex;
 
     public QuestionUniqueAnswer(QuestionType type, String statement, double value) {
         super(type, statement, value);
@@ -19,11 +20,15 @@ public class QuestionUniqueAnswer extends Question implements Serializable {
     public List<String> getOptions() {
         return options;
     }
-
+    
     public int getCorrectOptionIndex() {
         return correctOptionIndex;
     }
 
+    public int getChosenOptionIndex() {
+        return chosenOptionIndex;
+    }
+    
     public void setCorrectOptionIndex(int correctOptionIndex) {
         this.correctOptionIndex = correctOptionIndex;
     }
@@ -32,5 +37,8 @@ public class QuestionUniqueAnswer extends Question implements Serializable {
         this.options = options;
     }
     
+    public void setChosenOptionIndex(int chosenOptionIndex) {
+        this.chosenOptionIndex = chosenOptionIndex;
+    }
 
 }

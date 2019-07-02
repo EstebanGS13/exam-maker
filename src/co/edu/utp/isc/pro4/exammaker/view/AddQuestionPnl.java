@@ -64,7 +64,7 @@ public class AddQuestionPnl extends javax.swing.JPanel implements FrameControl {
         jLabel4 = new javax.swing.JLabel();
         btnGuardarPregunta = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtValue = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
 
         setBorder(javax.swing.BorderFactory.createTitledBorder("Agregar preguntas"));
@@ -129,7 +129,9 @@ public class AddQuestionPnl extends javax.swing.JPanel implements FrameControl {
         });
 
         txaStatement.setColumns(20);
+        txaStatement.setLineWrap(true);
         txaStatement.setRows(5);
+        txaStatement.setWrapStyleWord(true);
         jScrollPane2.setViewportView(txaStatement);
 
         jLabel2.setText("Enunciado:");
@@ -314,7 +316,7 @@ public class AddQuestionPnl extends javax.swing.JPanel implements FrameControl {
                                 .addGap(20, 20, 20)
                                 .addComponent(jLabel3)
                                 .addGap(27, 27, 27)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtValue, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnGuardarPregunta)))))
                 .addContainerGap())
@@ -339,7 +341,7 @@ public class AddQuestionPnl extends javax.swing.JPanel implements FrameControl {
                 .addGroup(pnlNewQuestionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnGuardarPregunta)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(txtValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         jPanel2.add(pnlNewQuestion, "new_question");
@@ -362,13 +364,11 @@ public class AddQuestionPnl extends javax.swing.JPanel implements FrameControl {
                         .addGap(199, 199, 199)
                         .addComponent(btnNuevaPregunta)
                         .addGap(145, 145, 145))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 478, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap())))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 478, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addContainerGap()))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -396,7 +396,7 @@ public class AddQuestionPnl extends javax.swing.JPanel implements FrameControl {
     private void btnNuevaPreguntaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevaPreguntaActionPerformed
         cmbQuestionType.setSelectedIndex(0);
         txaStatement.setText("");
-        jTextField1.setText("");
+        txtValue.setText("");
         txtOptionA.setText("");
         txtOptionB.setText("");
         txtOptionC.setText("");
@@ -435,7 +435,7 @@ public class AddQuestionPnl extends javax.swing.JPanel implements FrameControl {
 
     private void btnGuardarPreguntaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarPreguntaActionPerformed
         String statement = txaStatement.getText().trim();
-        double value = Double.parseDouble(jTextField1.getText().trim());
+        double value = Double.parseDouble(txtValue.getText().trim());
         List<String> options = new ArrayList(); 
         
         switch(cmbQuestionType.getSelectedIndex()) {
@@ -517,7 +517,6 @@ public class AddQuestionPnl extends javax.swing.JPanel implements FrameControl {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JPanel pnlNewQuestion;
     private javax.swing.JRadioButton radOptionA;
     private javax.swing.JRadioButton radOptionB;
@@ -532,6 +531,7 @@ public class AddQuestionPnl extends javax.swing.JPanel implements FrameControl {
     private javax.swing.JTextField txtOptionC1;
     private javax.swing.JTextField txtOptionD;
     private javax.swing.JTextField txtOptionD1;
+    private javax.swing.JTextField txtValue;
     // End of variables declaration//GEN-END:variables
 
     @Override

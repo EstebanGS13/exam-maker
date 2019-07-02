@@ -1,5 +1,7 @@
 package co.edu.utp.isc.pro4.exammaker.view;
 
+import co.edu.utp.isc.pro4.exammaker.controller.SolverController;
+
 /**
  *
  * @author Esteban
@@ -25,15 +27,17 @@ public class ExamMakerFrm extends javax.swing.JFrame implements FrameControl {
 
         jPnlLogin = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jButtonProfessor = new javax.swing.JButton();
-        jButtonStudent = new javax.swing.JButton();
+        btnProfesor = new javax.swing.JButton();
+        btnEstudiante = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jPnlProfessor = new javax.swing.JPanel();
-        btnCreateExam = new javax.swing.JButton();
-        btnGradeExam = new javax.swing.JButton();
+        btnCrearExamen = new javax.swing.JButton();
+        btnCalificarExamen = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jPnlCreateExam = new javax.swing.JPanel();
         createExamPnl1 = new co.edu.utp.isc.pro4.exammaker.view.CreateExamPnl();
+        jPnlStudent = new javax.swing.JPanel();
+        solveExamPnl1 = new co.edu.utp.isc.pro4.exammaker.view.SolveExamPnl();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Exam Maker");
@@ -45,14 +49,19 @@ public class ExamMakerFrm extends javax.swing.JFrame implements FrameControl {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setText("Bienvenido a Exam Maker");
 
-        jButtonProfessor.setText("Profesor");
-        jButtonProfessor.addActionListener(new java.awt.event.ActionListener() {
+        btnProfesor.setText("Profesor");
+        btnProfesor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonProfessorActionPerformed(evt);
+                btnProfesorActionPerformed(evt);
             }
         });
 
-        jButtonStudent.setText("Estudiante");
+        btnEstudiante.setText("Estudiante");
+        btnEstudiante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEstudianteActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel2.setText("Entrar como:");
@@ -69,12 +78,12 @@ public class ExamMakerFrm extends javax.swing.JFrame implements FrameControl {
                     .addGroup(jPnlLoginLayout.createSequentialGroup()
                         .addGap(317, 317, 317)
                         .addComponent(jLabel2)))
-                .addContainerGap(261, Short.MAX_VALUE))
+                .addContainerGap(273, Short.MAX_VALUE))
             .addGroup(jPnlLoginLayout.createSequentialGroup()
                 .addGap(133, 133, 133)
-                .addComponent(jButtonProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnProfesor, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButtonStudent, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnEstudiante, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(119, 119, 119))
         );
         jPnlLoginLayout.setVerticalGroup(
@@ -88,23 +97,23 @@ public class ExamMakerFrm extends javax.swing.JFrame implements FrameControl {
                         .addComponent(jLabel2)
                         .addGap(122, 122, 122))
                     .addGroup(jPnlLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButtonProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButtonStudent, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(396, Short.MAX_VALUE))
+                        .addComponent(btnProfesor, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnEstudiante, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(408, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPnlLogin, "login");
 
         jPnlProfessor.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Profesor", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 14))); // NOI18N
 
-        btnCreateExam.setText("Crear Examen");
-        btnCreateExam.addActionListener(new java.awt.event.ActionListener() {
+        btnCrearExamen.setText("Crear Examen");
+        btnCrearExamen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCreateExamActionPerformed(evt);
+                btnCrearExamenActionPerformed(evt);
             }
         });
 
-        btnGradeExam.setText("Calificar Examen");
+        btnCalificarExamen.setText("Calificar Examen");
 
         jLabel3.setText("Elija una opción");
 
@@ -113,27 +122,26 @@ public class ExamMakerFrm extends javax.swing.JFrame implements FrameControl {
         jPnlProfessorLayout.setHorizontalGroup(
             jPnlProfessorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPnlProfessorLayout.createSequentialGroup()
-                .addContainerGap(126, Short.MAX_VALUE)
-                .addGroup(jPnlProfessorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPnlProfessorLayout.createSequentialGroup()
-                        .addComponent(btnCreateExam, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(149, 149, 149)
-                        .addComponent(btnGradeExam, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(133, 133, 133))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPnlProfessorLayout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(314, 314, 314))))
+                .addContainerGap(340, Short.MAX_VALUE)
+                .addComponent(jLabel3)
+                .addGap(314, 314, 314))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPnlProfessorLayout.createSequentialGroup()
+                .addGap(128, 128, 128)
+                .addComponent(btnCrearExamen, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnCalificarExamen, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(130, 130, 130))
         );
         jPnlProfessorLayout.setVerticalGroup(
             jPnlProfessorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPnlProfessorLayout.createSequentialGroup()
                 .addGap(99, 99, 99)
                 .addComponent(jLabel3)
-                .addGap(116, 116, 116)
+                .addGap(158, 158, 158)
                 .addGroup(jPnlProfessorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCreateExam, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnGradeExam, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(454, Short.MAX_VALUE))
+                    .addComponent(btnCrearExamen, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCalificarExamen, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(424, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPnlProfessor, "professor");
@@ -157,16 +165,40 @@ public class ExamMakerFrm extends javax.swing.JFrame implements FrameControl {
 
         getContentPane().add(jPnlCreateExam, "create");
 
+        javax.swing.GroupLayout jPnlStudentLayout = new javax.swing.GroupLayout(jPnlStudent);
+        jPnlStudent.setLayout(jPnlStudentLayout);
+        jPnlStudentLayout.setHorizontalGroup(
+            jPnlStudentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPnlStudentLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(solveExamPnl1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPnlStudentLayout.setVerticalGroup(
+            jPnlStudentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPnlStudentLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(solveExamPnl1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(jPnlStudent, "student");
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonProfessorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonProfessorActionPerformed
+    private void btnProfesorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProfesorActionPerformed
         switchCard("professor");
-    }//GEN-LAST:event_jButtonProfessorActionPerformed
+    }//GEN-LAST:event_btnProfesorActionPerformed
 
-    private void btnCreateExamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateExamActionPerformed
+    private void btnCrearExamenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearExamenActionPerformed
         switchCard("create");
-    }//GEN-LAST:event_btnCreateExamActionPerformed
+    }//GEN-LAST:event_btnCrearExamenActionPerformed
+
+    private void btnEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEstudianteActionPerformed
+        SolverController.getInstance().loadExam();
+        switchCard("student");
+    }//GEN-LAST:event_btnEstudianteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -205,17 +237,19 @@ public class ExamMakerFrm extends javax.swing.JFrame implements FrameControl {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCreateExam;
-    private javax.swing.JButton btnGradeExam;
+    private javax.swing.JButton btnCalificarExamen;
+    private javax.swing.JButton btnCrearExamen;
+    private javax.swing.JButton btnEstudiante;
+    private javax.swing.JButton btnProfesor;
     private co.edu.utp.isc.pro4.exammaker.view.CreateExamPnl createExamPnl1;
-    private javax.swing.JButton jButtonProfessor;
-    private javax.swing.JButton jButtonStudent;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPnlCreateExam;
     private javax.swing.JPanel jPnlLogin;
     private javax.swing.JPanel jPnlProfessor;
+    private javax.swing.JPanel jPnlStudent;
+    private co.edu.utp.isc.pro4.exammaker.view.SolveExamPnl solveExamPnl1;
     // End of variables declaration//GEN-END:variables
 
     private void startApp() {
@@ -224,16 +258,22 @@ public class ExamMakerFrm extends javax.swing.JFrame implements FrameControl {
     
     @Override
     public void switchCard(String card) {
-        if (card.equals("professor")) {
-            this.jPnlLogin.setVisible(false);
-            this.jPnlProfessor.setVisible(true);
-        }
-        else if (card.equals("create")) {
-            this.jPnlProfessor.setVisible(false);
-            this.jPnlCreateExam.setVisible(true);
+        switch (card) {
+            case "professor":
+                jPnlLogin.setVisible(false);
+                jPnlProfessor.setVisible(true);
+                break;
+            case "create":
+                jPnlProfessor.setVisible(false);
+                jPnlCreateExam.setVisible(true);
+                break;
+            case "student":
+                jPnlLogin.setVisible(false);
+                jPnlStudent.setVisible(true);
+                break;
+            default:
+                break;
         }
     }
     
-    
-
 }

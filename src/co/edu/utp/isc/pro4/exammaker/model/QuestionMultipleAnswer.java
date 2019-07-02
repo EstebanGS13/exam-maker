@@ -10,6 +10,7 @@ public class QuestionMultipleAnswer extends Question implements Serializable {
        
     private List<String> options;
     private List<Integer> correctOptionsIndexes;
+    private List<Integer> chosenOptionsIndexes;
 
     public QuestionMultipleAnswer(QuestionType type, String statement, double value) {
         super(type, statement, value);
@@ -25,6 +26,10 @@ public class QuestionMultipleAnswer extends Question implements Serializable {
         return correctOptionsIndexes;
     }
 
+    public List<Integer> getChosenOptionsIndexes() {
+        return chosenOptionsIndexes;
+    }
+    
     public void setOptions(List<String> options) {
         this.options = options;
     }
@@ -32,5 +37,9 @@ public class QuestionMultipleAnswer extends Question implements Serializable {
     public void setCorrectOptionsIndexes(List<Integer> correctOptionsIndexes) {
         this.correctOptionsIndexes = correctOptionsIndexes;
     }
- 
+
+    public void setChosenOptionsIndexes(List<Integer> chosenOptionsIndexes) {
+        this.chosenOptionsIndexes = chosenOptionsIndexes;
+    }
+    
 }

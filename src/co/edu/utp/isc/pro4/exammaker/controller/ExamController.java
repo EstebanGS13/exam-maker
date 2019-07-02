@@ -52,7 +52,7 @@ public class ExamController {
     }
 
     public void saveExam() {
-        FileController.getInstance().saveNewExam(this.exam);
+        FileController.getInstance().saveExam(this.exam, "exam.cad");
     }
     
     public void test() {
