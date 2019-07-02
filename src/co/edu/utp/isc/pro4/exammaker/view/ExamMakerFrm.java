@@ -1,5 +1,6 @@
 package co.edu.utp.isc.pro4.exammaker.view;
 
+import co.edu.utp.isc.pro4.exammaker.controller.GraderController;
 import co.edu.utp.isc.pro4.exammaker.controller.SolverController;
 
 /**
@@ -38,6 +39,8 @@ public class ExamMakerFrm extends javax.swing.JFrame implements FrameControl {
         createExamPnl1 = new co.edu.utp.isc.pro4.exammaker.view.CreateExamPnl();
         jPnlStudent = new javax.swing.JPanel();
         solveExamPnl1 = new co.edu.utp.isc.pro4.exammaker.view.SolveExamPnl();
+        jPnlGradeExam = new javax.swing.JPanel();
+        gradeExamPnl1 = new co.edu.utp.isc.pro4.exammaker.view.GradeExamPnl();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Exam Maker");
@@ -114,6 +117,11 @@ public class ExamMakerFrm extends javax.swing.JFrame implements FrameControl {
         });
 
         btnCalificarExamen.setText("Calificar Examen");
+        btnCalificarExamen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCalificarExamenActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Elija una opción");
 
@@ -184,6 +192,36 @@ public class ExamMakerFrm extends javax.swing.JFrame implements FrameControl {
 
         getContentPane().add(jPnlStudent, "student");
 
+        javax.swing.GroupLayout gradeExamPnl1Layout = new javax.swing.GroupLayout(gradeExamPnl1);
+        gradeExamPnl1.setLayout(gradeExamPnl1Layout);
+        gradeExamPnl1Layout.setHorizontalGroup(
+            gradeExamPnl1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 740, Short.MAX_VALUE)
+        );
+        gradeExamPnl1Layout.setVerticalGroup(
+            gradeExamPnl1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 763, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jPnlGradeExamLayout = new javax.swing.GroupLayout(jPnlGradeExam);
+        jPnlGradeExam.setLayout(jPnlGradeExamLayout);
+        jPnlGradeExamLayout.setHorizontalGroup(
+            jPnlGradeExamLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPnlGradeExamLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(gradeExamPnl1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPnlGradeExamLayout.setVerticalGroup(
+            jPnlGradeExamLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPnlGradeExamLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(gradeExamPnl1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(jPnlGradeExam, "card6");
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -199,6 +237,13 @@ public class ExamMakerFrm extends javax.swing.JFrame implements FrameControl {
         SolverController.getInstance().loadExam();
         switchCard("student");
     }//GEN-LAST:event_btnEstudianteActionPerformed
+
+    private void btnCalificarExamenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalificarExamenActionPerformed
+        // TODO add your handling code here:
+        GraderController.getInstance().loadSolvedExam();
+        GraderController.getInstance().checkAnswers();
+        switchCard("grade");
+    }//GEN-LAST:event_btnCalificarExamenActionPerformed
 
     /**
      * @param args the command line arguments
@@ -242,10 +287,12 @@ public class ExamMakerFrm extends javax.swing.JFrame implements FrameControl {
     private javax.swing.JButton btnEstudiante;
     private javax.swing.JButton btnProfesor;
     private co.edu.utp.isc.pro4.exammaker.view.CreateExamPnl createExamPnl1;
+    private co.edu.utp.isc.pro4.exammaker.view.GradeExamPnl gradeExamPnl1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPnlCreateExam;
+    private javax.swing.JPanel jPnlGradeExam;
     private javax.swing.JPanel jPnlLogin;
     private javax.swing.JPanel jPnlProfessor;
     private javax.swing.JPanel jPnlStudent;
@@ -271,6 +318,10 @@ public class ExamMakerFrm extends javax.swing.JFrame implements FrameControl {
                 jPnlLogin.setVisible(false);
                 jPnlStudent.setVisible(true);
                 break;
+            case "grade":
+                jPnlLogin.setVisible(false);
+                jPnlProfessor.setVisible(false);
+                jPnlGradeExam.setVisible(true);
             default:
                 break;
         }
