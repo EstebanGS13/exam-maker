@@ -15,6 +15,7 @@ public class GraderController {
     private static GraderController instance;
     private Exam exam;
     private double grade = 0;
+    private List <Question> openAnswersToGrade = new ArrayList();
 
     public GraderController() {
     }
@@ -30,12 +31,11 @@ public class GraderController {
         this.exam = FileController.getInstance().loadExam("solved_exam.cad");
     }
 
-    public List<Question> checkAnswers() {
-        List <Question> questionsToGrade = new ArrayList();
+    public void checkAnswers() {
         for (Question question : exam.getQuestions()) {
             switch(question.getType()) {
                 case OPEN:
-                    questionsToGrade.add((QuestionOpenAnswer) question);
+                    openAnswersToGrade.add((QuestionOpenAnswer) question);
                     break;
                 case UNIQUE:
                     if (((QuestionUniqueAnswer) question).getChosenOptionIndex()
@@ -57,7 +57,20 @@ public class GraderController {
                     }
             }
         }
-        return questionsToGrade;
+        System.out.println("Nota preeliminar: " + this.grade);
     }
+
+    public double getGrade() {
+        return grade;
+    }
+
+    public void setGrade(double grade) {
+        this.grade = grade;
+    }
+
+    public List<Question> getOpenAnswersToGrade() {
+        return openAnswersToGrade;
+    }
+    
     
 }

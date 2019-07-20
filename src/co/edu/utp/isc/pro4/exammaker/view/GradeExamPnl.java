@@ -1,5 +1,11 @@
 package co.edu.utp.isc.pro4.exammaker.view;
 
+import co.edu.utp.isc.pro4.exammaker.controller.GraderController;
+import co.edu.utp.isc.pro4.exammaker.model.Question;
+import co.edu.utp.isc.pro4.exammaker.model.QuestionOpenAnswer;
+import java.util.List;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Esteban
@@ -22,9 +28,8 @@ public class GradeExamPnl extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        btnCorrecta = new javax.swing.JButton();
-        btnIncorrecta = new javax.swing.JButton();
+        btnGrupoCalificar = new javax.swing.ButtonGroup();
+        jPnlCalificar = new javax.swing.JPanel();
         jPnlOpenQuestion = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -33,17 +38,15 @@ public class GradeExamPnl extends javax.swing.JPanel {
         txaStatement = new javax.swing.JTextArea();
         jScrollPane2 = new javax.swing.JScrollPane();
         txaAnswer = new javax.swing.JTextArea();
+        btnCorrecta = new javax.swing.JToggleButton();
+        btnIncorrecta = new javax.swing.JToggleButton();
         btnSiguientePregunta = new javax.swing.JButton();
 
         setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Profesor", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 14))); // NOI18N
         setPreferredSize(new java.awt.Dimension(740, 763));
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Calificar Examen"));
-        jPanel1.setPreferredSize(new java.awt.Dimension(550, 550));
-
-        btnCorrecta.setText("Correcta");
-
-        btnIncorrecta.setText("Incorrecta");
+        jPnlCalificar.setBorder(javax.swing.BorderFactory.createTitledBorder("Calificar Examen"));
+        jPnlCalificar.setPreferredSize(new java.awt.Dimension(550, 550));
 
         jLabel2.setText("PREGUNTA ABIERTA");
 
@@ -58,6 +61,7 @@ public class GradeExamPnl extends javax.swing.JPanel {
         txaStatement.setWrapStyleWord(true);
         jScrollPane1.setViewportView(txaStatement);
 
+        txaAnswer.setEditable(false);
         txaAnswer.setColumns(20);
         txaAnswer.setLineWrap(true);
         txaAnswer.setRows(5);
@@ -78,7 +82,7 @@ public class GradeExamPnl extends javax.swing.JPanel {
                     .addGroup(jPnlOpenQuestionLayout.createSequentialGroup()
                         .addGap(173, 173, 173)
                         .addComponent(jLabel2)))
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
         jPnlOpenQuestionLayout.setVerticalGroup(
             jPnlOpenQuestionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -96,34 +100,51 @@ public class GradeExamPnl extends javax.swing.JPanel {
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(103, 103, 103)
-                .addComponent(btnCorrecta, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+        btnGrupoCalificar.add(btnCorrecta);
+        btnCorrecta.setText("Correcta");
+        btnCorrecta.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                btnCorrectaItemStateChanged(evt);
+            }
+        });
+
+        btnGrupoCalificar.add(btnIncorrecta);
+        btnIncorrecta.setText("Incorrecta");
+        btnIncorrecta.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                btnIncorrectaItemStateChanged(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPnlCalificarLayout = new javax.swing.GroupLayout(jPnlCalificar);
+        jPnlCalificar.setLayout(jPnlCalificarLayout);
+        jPnlCalificarLayout.setHorizontalGroup(
+            jPnlCalificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPnlCalificarLayout.createSequentialGroup()
+                .addGap(94, 94, 94)
+                .addComponent(btnCorrecta, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnIncorrecta)
-                .addGap(91, 91, 91))
-            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(121, 121, 121))
+            .addGroup(jPnlCalificarLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPnlOpenQuestion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+        jPnlCalificarLayout.setVerticalGroup(
+            jPnlCalificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPnlCalificarLayout.createSequentialGroup()
                 .addContainerGap(19, Short.MAX_VALUE)
                 .addComponent(jPnlOpenQuestion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPnlCalificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCorrecta)
                     .addComponent(btnIncorrecta))
                 .addGap(14, 14, 14))
         );
 
         btnSiguientePregunta.setText("Siguiente Pregunta");
+        btnSiguientePregunta.setEnabled(false);
         btnSiguientePregunta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSiguientePreguntaActionPerformed(evt);
@@ -134,47 +155,101 @@ public class GradeExamPnl extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(490, Short.MAX_VALUE)
-                .addComponent(btnSiguientePregunta)
-                .addGap(102, 102, 102))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(95, 95, 95)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(85, Short.MAX_VALUE)))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(95, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnSiguientePregunta)
+                        .addGap(102, 102, 102))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jPnlCalificar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(85, 85, 85))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(674, Short.MAX_VALUE)
+                .addContainerGap(97, Short.MAX_VALUE)
+                .addComponent(jPnlCalificar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
                 .addComponent(btnSiguientePregunta)
                 .addGap(31, 31, 31))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(106, 106, 106)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(81, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSiguientePreguntaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguientePreguntaActionPerformed
-        
+        if (btnCorrecta.isSelected()) {
+            grade += currentQuestion.getValue();
+        }
+        updateQuestion();
+        showQuestion();
+        btnGrupoCalificar.clearSelection();
+        btnSiguientePregunta.setEnabled(false);
     }//GEN-LAST:event_btnSiguientePreguntaActionPerformed
+
+    private void btnCorrectaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_btnCorrectaItemStateChanged
+        btnSiguientePregunta.setEnabled(true);
+    }//GEN-LAST:event_btnCorrectaItemStateChanged
+
+    private void btnIncorrectaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_btnIncorrectaItemStateChanged
+        btnSiguientePregunta.setEnabled(true);
+    }//GEN-LAST:event_btnIncorrectaItemStateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCorrecta;
-    private javax.swing.JButton btnIncorrecta;
+    private javax.swing.JToggleButton btnCorrecta;
+    private javax.swing.ButtonGroup btnGrupoCalificar;
+    private javax.swing.JToggleButton btnIncorrecta;
     private javax.swing.JButton btnSiguientePregunta;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPnlCalificar;
     private javax.swing.JPanel jPnlOpenQuestion;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea txaAnswer;
     private javax.swing.JTextArea txaStatement;
     // End of variables declaration//GEN-END:variables
+    private List<Question> questionsToGrade;
+    private int index = -1;
+    private Question currentQuestion;
+    private double grade = 0;
+    
+    public void getAnswers() {
+        questionsToGrade = GraderController.getInstance().getOpenAnswersToGrade();
+        if (!questionsToGrade.isEmpty()) {
+            grade = GraderController.getInstance().getGrade();
+            updateQuestion();
+            showQuestion();
+        } else {
+            JOptionPane.showMessageDialog(this, "Lista de respuestas abiertas vacia");
+        }
+    }
+    
+    private void updateQuestion() {
+        index++;
+        if (index >= questionsToGrade.size()) {
+            clean();
+            JOptionPane.showMessageDialog(this, "No hay más respuestas", "Examen calificado", JOptionPane.INFORMATION_MESSAGE);
+            this.setVisible(false);
+            System.out.println("Nota final del examen: " + grade);
+            JOptionPane.showMessageDialog(this, "Nota final del examen: " + grade, "Examen calificado", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            currentQuestion = questionsToGrade.get(index);
+        }
+    }
+    
+    private void clean() {
+        txaStatement.setText("");
+        txaAnswer.setText("");
+    }
+    
+    private void showQuestion() {
+        clean();
+        if (currentQuestion != null) {
+            txaStatement.setText(currentQuestion.getStatement());
+            txaAnswer.setText(((QuestionOpenAnswer) currentQuestion).getAnswer());
+        }
+    }
+    
 }

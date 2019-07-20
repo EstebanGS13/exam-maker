@@ -203,7 +203,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="createExamPnl1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="40" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -282,21 +282,8 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Container class="co.edu.utp.isc.pro4.exammaker.view.GradeExamPnl" name="gradeExamPnl1">
-
-          <Layout>
-            <DimensionLayout dim="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="740" max="32767" attributes="0"/>
-              </Group>
-            </DimensionLayout>
-            <DimensionLayout dim="1">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="763" max="32767" attributes="0"/>
-              </Group>
-            </DimensionLayout>
-          </Layout>
-        </Container>
+        <Component class="co.edu.utp.isc.pro4.exammaker.view.GradeExamPnl" name="gradeExamPnl1">
+        </Component>
       </SubComponents>
     </Container>
   </SubComponents>

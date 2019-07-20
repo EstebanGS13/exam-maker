@@ -339,39 +339,39 @@ public class SolveExamPnl extends javax.swing.JPanel implements FrameControl {
     }//GEN-LAST:event_btnEmpezarExamenActionPerformed
 
     private void btnSiguientePreguntaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguientePreguntaActionPerformed
-        switch(type) {
+        switch (type) {
             case OPEN:
-            ((QuestionOpenAnswer) currentQuestion).setAnswer(txaAnswer.getText().trim());
-            break;
+                ((QuestionOpenAnswer) currentQuestion).setAnswer(txaAnswer.getText().trim());
+                break;
             case UNIQUE:
-            int num = -1;
-            if (radOptionA.isSelected()) {
-                num = 0;
-            } else if (radOptionB.isSelected()) {
-                num = 1;
-            } else if (radOptionC.isSelected()) {
-                num = 2;
-            } else if (radOptionD.isSelected()) {
-                num = 3;
-            }
-            ((QuestionUniqueAnswer) currentQuestion).setChosenOptionIndex(num);
-            break;
+                int num = -1;
+                if (radOptionA.isSelected()) {
+                    num = 0;
+                } else if (radOptionB.isSelected()) {
+                    num = 1;
+                } else if (radOptionC.isSelected()) {
+                    num = 2;
+                } else if (radOptionD.isSelected()) {
+                    num = 3;
+                }
+                ((QuestionUniqueAnswer) currentQuestion).setChosenOptionIndex(num);
+                break;
             case MULTIPLE:
-            List<Integer> nums = new ArrayList();
-            if (chkOptionA.isSelected()) {
-                nums.add(0);
-            }
-            if (chkOptionB.isSelected()) {
-                nums.add(1);
-            }
-            if (chkOptionC.isSelected()) {
-                nums.add(2);
-            }
-            if (chkOptionD.isSelected()) {
-                nums.add(3);
-            }
-            ((QuestionMultipleAnswer) currentQuestion).setChosenOptionsIndexes(nums);
-            break;
+                List<Integer> nums = new ArrayList();
+                if (chkOptionA.isSelected()) {
+                    nums.add(0);
+                }
+                if (chkOptionB.isSelected()) {
+                    nums.add(1);
+                }
+                if (chkOptionC.isSelected()) {
+                    nums.add(2);
+                }
+                if (chkOptionD.isSelected()) {
+                    nums.add(3);
+                }
+                ((QuestionMultipleAnswer) currentQuestion).setChosenOptionsIndexes(nums);
+                break;
         }
         updateQuestion();
     }//GEN-LAST:event_btnSiguientePreguntaActionPerformed

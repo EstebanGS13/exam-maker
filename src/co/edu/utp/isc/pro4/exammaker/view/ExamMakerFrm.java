@@ -161,7 +161,7 @@ public class ExamMakerFrm extends javax.swing.JFrame implements FrameControl {
             .addGroup(jPnlCreateExamLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(createExamPnl1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
         jPnlCreateExamLayout.setVerticalGroup(
             jPnlCreateExamLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -191,17 +191,6 @@ public class ExamMakerFrm extends javax.swing.JFrame implements FrameControl {
         );
 
         getContentPane().add(jPnlStudent, "student");
-
-        javax.swing.GroupLayout gradeExamPnl1Layout = new javax.swing.GroupLayout(gradeExamPnl1);
-        gradeExamPnl1.setLayout(gradeExamPnl1Layout);
-        gradeExamPnl1Layout.setHorizontalGroup(
-            gradeExamPnl1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 740, Short.MAX_VALUE)
-        );
-        gradeExamPnl1Layout.setVerticalGroup(
-            gradeExamPnl1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 763, Short.MAX_VALUE)
-        );
 
         javax.swing.GroupLayout jPnlGradeExamLayout = new javax.swing.GroupLayout(jPnlGradeExam);
         jPnlGradeExam.setLayout(jPnlGradeExamLayout);
@@ -239,10 +228,10 @@ public class ExamMakerFrm extends javax.swing.JFrame implements FrameControl {
     }//GEN-LAST:event_btnEstudianteActionPerformed
 
     private void btnCalificarExamenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalificarExamenActionPerformed
-        // TODO add your handling code here:
         GraderController.getInstance().loadSolvedExam();
         GraderController.getInstance().checkAnswers();
         switchCard("grade");
+        gradeExamPnl1.getAnswers();
     }//GEN-LAST:event_btnCalificarExamenActionPerformed
 
     /**
